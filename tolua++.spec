@@ -1,12 +1,13 @@
 Summary:	Extended version of tolua, a tool to integrate C/C++ code with Lua
 Summary(pl):	Rozszerzona wersja tolua, narzêdzia integruj±cego kod C/C++ z Lua
 Name:		tolua++
-Version:	1.0.2
-Release:	3
+Version:	1.0.3
+Release:	1
 License:	Free
 Group:		Development/Tools
 Source0:	http://www.codenix.com/~tolua/%{name}-%{version}.tar.bz2
-# Source0-md5:	0bfb13d7cf45c7738d2a93cc599886bb
+# Source0-md5:	003129c1b14a2a2ed5747f051eff6c3e
+# Source0-size:	106789
 BuildRequires:	lua50-devel >= 5.0.2-2
 BuildRequires:	scons
 Requires:	%{name}-libs = %{version}-%{release}
