@@ -2,13 +2,14 @@ Summary:	Extended version of tolua, a tool to integrate C/C++ code with Lua
 Summary(pl):	Rozszerzona wersja tolua, narzêdzia integruj±cego kod C/C++ z Lua
 Name:		tolua++
 Version:	1.0.2
-Release:	2
+Release:	3
 License:	Free
 Group:		Development/Tools
 Source0:	http://www.codenix.com/~tolua/%{name}-%{version}.tar.bz2
 # Source0-md5:	0bfb13d7cf45c7738d2a93cc599886bb
-BuildRequires:	scons
 BuildRequires:	lua50-devel >= 5.0.2-2
+BuildRequires:	scons
+Requires:	%{name}-libs = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -51,7 +52,7 @@ Biblioteka dynamiczna tolua++.
 Summary:	tolua++ static library
 Summary(pl):	Biblioteka statyczna tolua++
 Group:		Development/Tools
-Requires:	%{name}-libs = %{version}-%{release}
+Requires:	%{name} = %{version}-%{release}
 
 %description static
 tolua++ static library.
@@ -65,10 +66,8 @@ Biblioteka statyczna tolua++.
 %build
 scons \
 	CC="%{__cc}" \
-	CCPP="%{__cxx}" \
 	LUA="%{_prefix}" \
-	CFLAGS="%{rpmcflags}" \
-	CPPFLAGS="%{rpmcflags} -fno-rtti -fno-exceptions"
+	CCFLAGS="%{rpmcflags} -fPIC -I/usr/include/lua50"
 
 %{__cc} src/lib/tolua_{event,is,map,push,to}.o -shared -llua50 -llualib50 -ldl -lm -o lib/libtolua++.so
 %{__cc} -o bin/tolua++ src/bin/toluabind.o src/bin/tolua.o -Llib -ltolua++
