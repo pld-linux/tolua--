@@ -7,10 +7,10 @@ License:	Free
 Group:		Development/Tools
 Source0:	http://www.codenix.com/~tolua/%{name}-%{version}.tar.bz2
 # Source0-md5:	003129c1b14a2a2ed5747f051eff6c3e
+URL:		http://www.codenix.com/~tolua/
 BuildRequires:	lua50-devel >= 5.0.2-2
 BuildRequires:	scons
 Requires:	%{name}-libs = %{version}-%{release}
-URL:		http://www.codenix.com/~tolua/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
