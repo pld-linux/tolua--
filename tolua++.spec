@@ -68,7 +68,7 @@ Biblioteka statyczna tolua++.
 scons \
 	CC="%{__cc}" \
 	LUA="%{_prefix}" \
-	CCFLAGS="%{rpmcflags} -fPIC -I%{_includedir}/lua50"
+	CCFLAGS="%{rpmcflags} -fPIC -I/usr/include/lua50"
 
 %{__cc} src/lib/tolua_{event,is,map,push,to}.o -shared -llua50 -llualib50 -ldl -lm -o lib/libtolua++.so
 %{__cc} -o bin/tolua++ src/bin/toluabind.o src/bin/tolua.o -Llib -ltolua++
