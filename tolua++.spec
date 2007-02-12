@@ -1,5 +1,5 @@
 Summary:	Extended version of tolua, a tool to integrate C/C++ code with Lua
-Summary(pl.UTF-8):   Rozszerzona wersja tolua, narzędzia integrującego kod C/C++ z Lua
+Summary(pl.UTF-8):	Rozszerzona wersja tolua, narzędzia integrującego kod C/C++ z Lua
 Name:		tolua++
 Version:	1.0.4
 Release:	1
@@ -40,7 +40,7 @@ metody z C/C++ do Lua. Umożliwia również tworzenie modułów Lua.
 
 %package libs
 Summary:	tolua++ dynamic library
-Summary(pl.UTF-8):   Biblioteka dynamiczna tolua++
+Summary(pl.UTF-8):	Biblioteka dynamiczna tolua++
 Group:		Development/Tools
 
 %description libs
@@ -51,7 +51,7 @@ Biblioteka dynamiczna tolua++.
 
 %package static
 Summary:	tolua++ static library
-Summary(pl.UTF-8):   Biblioteka statyczna tolua++
+Summary(pl.UTF-8):	Biblioteka statyczna tolua++
 Group:		Development/Tools
 Requires:	%{name} = %{version}-%{release}
 
