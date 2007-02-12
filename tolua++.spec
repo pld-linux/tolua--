@@ -1,5 +1,5 @@
 Summary:	Extended version of tolua, a tool to integrate C/C++ code with Lua
-Summary(pl):	Rozszerzona wersja tolua, narzêdzia integruj±cego kod C/C++ z Lua
+Summary(pl.UTF-8):   Rozszerzona wersja tolua, narzÄ™dzia integrujÄ…cego kod C/C++ z Lua
 Name:		tolua++
 Version:	1.0.4
 Release:	1
@@ -26,39 +26,39 @@ automatically maps C/C++ constants, external variables, functions,
 namespace, classes, and methods to Lua. It also provides facilities to
 create Lua modules.
 
-%description -l pl
-tolua++ jest rozszerzeniem tolua, narzêdzia integruj±cego kod C/C++ z
+%description -l pl.UTF-8
+tolua++ jest rozszerzeniem tolua, narzÄ™dzia integrujÄ…cego kod C/C++ z
 Lua. tolua++ zawiera nowe, zorientowane na c++ cechy takie jak wzorce
 klas.
 
-tolua jest narzêdziem które znacznie upraszcza integracje kodu C/C++ z
-Lua. Bazuj±c na "oczyszczonych" plikach nag³ówkowych tolua
-automatycznie generuje kod umo¿liwiaj±cy Lua dostêp do struktur i
-funkcji C/C++. Dziêki u¿yciu API Lua 5.0, bie¿±ca wersja automatycznie
-mapuje sta³e, zewnêtrzne zmienne, funkcje, przestrzenie nazw, klasy i
-metody z C/C++ do Lua. Umo¿liwia równie¿ tworzenie modu³ów Lua.
+tolua jest narzÄ™dziem ktÃ³re znacznie upraszcza integracje kodu C/C++ z
+Lua. BazujÄ…c na "oczyszczonych" plikach nagÅ‚Ã³wkowych tolua
+automatycznie generuje kod umoÅ¼liwiajÄ…cy Lua dostÄ™p do struktur i
+funkcji C/C++. DziÄ™ki uÅ¼yciu API Lua 5.0, bieÅ¼Ä…ca wersja automatycznie
+mapuje staÅ‚e, zewnÄ™trzne zmienne, funkcje, przestrzenie nazw, klasy i
+metody z C/C++ do Lua. UmoÅ¼liwia rÃ³wnieÅ¼ tworzenie moduÅ‚Ã³w Lua.
 
 %package libs
 Summary:	tolua++ dynamic library
-Summary(pl):	Biblioteka dynamiczna tolua++
+Summary(pl.UTF-8):   Biblioteka dynamiczna tolua++
 Group:		Development/Tools
 
 %description libs
 tolua++ dynamic library.
 
-%description libs -l pl
+%description libs -l pl.UTF-8
 Biblioteka dynamiczna tolua++.
 
 %package static
 Summary:	tolua++ static library
-Summary(pl):	Biblioteka statyczna tolua++
+Summary(pl.UTF-8):   Biblioteka statyczna tolua++
 Group:		Development/Tools
 Requires:	%{name} = %{version}-%{release}
 
 %description static
 tolua++ static library.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Biblioteka statyczna tolua++.
 
 %prep
