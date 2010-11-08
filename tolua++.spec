@@ -63,7 +63,7 @@ Biblioteka statyczna tolua++.
 %build
 %scons
 
-%{__cc} src/lib/tolua_{event,is,map,push,to}.o -shared -llua51 -ldl -lm -o lib/libtolua++.so
+%{__cc} src/lib/tolua_{event,is,map,push,to}.o -fPIC -shared -llua51 -ldl -lm -o lib/libtolua++.so
 %{__cc} -o bin/tolua++ src/bin/toluabind.o src/bin/tolua.o -Llib -ltolua++
 
 %install
