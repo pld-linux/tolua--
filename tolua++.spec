@@ -94,5 +94,4 @@ rm -rf $RPM_BUILD_ROOT
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/libtolua++.a
-/usr/lib/libtolua++_static.a
+%{_libdir}/libtolua++*.a
