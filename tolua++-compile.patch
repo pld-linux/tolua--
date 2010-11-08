@@ -1,0 +1,11 @@
+--- tolua++-1.0.93/config_linux.py~	2010-11-08 14:58:51.255188000 +0100
++++ tolua++-1.0.93/config_linux.py	2010-11-08 15:03:06.176848667 +0100
+@@ -4,7 +4,7 @@
+ 
+ # Compiler flags (based on Debian's installation of lua)
+ #LINKFLAGS = ['-g']
+-CCFLAGS = ['-I/usr/include/lua51', '-O2', '-ansi', '-Wall']
++CCFLAGS = ['-I/usr/include/lua51', '-O2', '-ansi', '-Wall', '-fPIC']
+ #CCFLAGS = ['-I/usr/include/lua50', '-g']
+ 
+ # this is the default directory for installation. Files will be installed on
