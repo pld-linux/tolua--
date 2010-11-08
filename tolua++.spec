@@ -1,14 +1,15 @@
 Summary:	Extended version of tolua, a tool to integrate C/C++ code with Lua
 Summary(pl.UTF-8):	Rozszerzona wersja tolua, narzędzia integrującego kod C/C++ z Lua
 Name:		tolua++
-Version:	1.0.4
+Version:	1.0.93
 Release:	1
 License:	Free
 Group:		Development/Tools
 Source0:	http://www.codenix.com/~tolua/%{name}-%{version}.tar.bz2
-# Source0-md5:	8785100f7c9d9253cb47b530d97a32f6
+# Source0-md5:	100aa6907b8108582080b37d79c0afd7
+Patch0:		%{name}-lua51.patch
 URL:		http://www.codenix.com/~tolua/
-BuildRequires:	lua50-devel >= 5.0.2-2
+BuildRequires:	lua51-devel
 BuildRequires:	scons
 Requires:	%{name}-libs = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -20,11 +21,7 @@ templates.
 
 tolua is a tool that greatly simplifies the integration of C/C++ code
 with Lua. Based on a "cleaned" header file, tolua automatically
-generates the binding code to access C/C++ features from Lua. Using
-Lua-5.0 API and tag method facilities, the current version
-automatically maps C/C++ constants, external variables, functions,
-namespace, classes, and methods to Lua. It also provides facilities to
-create Lua modules.
+generates the binding code to access C/C++ features from Lua.
 
 %description -l pl.UTF-8
 tolua++ jest rozszerzeniem tolua, narzędzia integrującego kod C/C++ z
@@ -34,9 +31,7 @@ klas.
 tolua jest narzędziem które znacznie upraszcza integracje kodu C/C++ z
 Lua. Bazując na "oczyszczonych" plikach nagłówkowych tolua
 automatycznie generuje kod umożliwiający Lua dostęp do struktur i
-funkcji C/C++. Dzięki użyciu API Lua 5.0, bieżąca wersja automatycznie
-mapuje stałe, zewnętrzne zmienne, funkcje, przestrzenie nazw, klasy i
-metody z C/C++ do Lua. Umożliwia również tworzenie modułów Lua.
+funkcji C/C++.
 
 %package libs
 Summary:	tolua++ dynamic library
@@ -63,14 +58,12 @@ Biblioteka statyczna tolua++.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
-scons \
-	CC="%{__cc}" \
-	LUA="%{_prefix}" \
-	CCFLAGS="%{rpmcflags} -fPIC -I/usr/include/lua50"
+%scons
 
-%{__cc} src/lib/tolua_{event,is,map,push,to}.o -shared -llua50 -llualib50 -ldl -lm -o lib/libtolua++.so
+%{__cc} src/lib/tolua_{event,is,map,push,to}.o -shared -llua51 -ldl -lm -o lib/libtolua++.so
 %{__cc} -o bin/tolua++ src/bin/toluabind.o src/bin/tolua.o -Llib -ltolua++
 
 %install
@@ -90,13 +83,14 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc README doc/*
-%attr(755,root,root) %{_bindir}/*
-%{_includedir}/*
+%attr(755,root,root) %{_bindir}/tolua++
+%{_includedir}/tolua++.h
 
 %files libs
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/lib*.so
+%attr(755,root,root) %{_libdir}/libtolua++.so
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/lib*.a
+%{_libdir}/libtolua++.a
+/usr/lib/libtolua++_static.a
