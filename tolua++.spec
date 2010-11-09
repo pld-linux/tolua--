@@ -63,10 +63,11 @@ Biblioteka statyczna tolua++.
 
 %build
 %scons \
-	CCFLAGS="%{rpmcflags} -I/usr/include/lua51 -ansi -fPIC"
+	CCFLAGS="%{rpmcflags} -I/usr/include/lua51 -ansi -fPIC" \
+	LINKFLAGS="%{rpmldflags}"
 
-%{__cc} src/lib/tolua_{event,is,map,push,to}.o -shared -llua51 -ldl -lm -o lib/libtolua++.so
-%{__cc} -o bin/tolua++ src/bin/toluabind.o src/bin/tolua.o -Llib -ltolua++
+%{__cc} %{rpmldflags} -shared src/lib/tolua_{event,is,map,push,to}.o -o lib/libtolua++.so -llua51 -ldl -lm
+%{__cc} %{rpmldflags} -Llib src/bin/toluabind.o src/bin/tolua.o -o bin/tolua++ -ltolua++ -llua51
 
 %install
 rm -rf $RPM_BUILD_ROOT
