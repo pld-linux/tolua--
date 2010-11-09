@@ -61,6 +61,7 @@ Biblioteka dynamiczna tolua++.
 Summary:	tolua++ static library
 Summary(pl.UTF-8):	Biblioteka statyczna tolua++
 Group:		Development/Tools
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 tolua++ static library.
