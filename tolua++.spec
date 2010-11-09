@@ -2,7 +2,7 @@ Summary:	Extended version of tolua, a tool to integrate C/C++ code with Lua
 Summary(pl.UTF-8):	Rozszerzona wersja tolua, narzędzia integrującego kod C/C++ z Lua
 Name:		tolua++
 Version:	1.0.93
-Release:	2
+Release:	3
 License:	Free
 Group:		Development/Tools
 Source0:	http://www.codenix.com/~tolua/%{name}-%{version}.tar.bz2
@@ -12,7 +12,7 @@ Patch1:		%{name}-compile.patch
 URL:		http://www.codenix.com/~tolua/
 BuildRequires:	lua51-devel
 BuildRequires:	scons
-Requires:	%{name}-devel = %{version}-%{release}
+Requires:	%{name}-libs = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -38,7 +38,7 @@ funkcji C/C++.
 Summary:	tolua++ header files
 Summary(pl.UTF-8):	Pliki nagłówkowe tolua++
 Group:		Development/Libraries
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name}-libs = %{version}-%{release}
 
 %description devel
 Header files for tolua++.
@@ -46,11 +46,21 @@ Header files for tolua++.
 %description devel -l pl.UTF-8
 Pliki nagłówkowe tolua++.
 
+%package libs
+Summary:	tolua++ dynamic library
+Summary(pl.UTF-8):	Biblioteka dynamiczna tolua++
+Group:		Development/Tools
+
+%description libs
+tolua++ dynamic library.
+
+%description libs -l pl.UTF-8
+Biblioteka dynamiczna tolua++.
+
 %package static
 Summary:	tolua++ static library
 Summary(pl.UTF-8):	Biblioteka statyczna tolua++
 Group:		Development/Tools
-Requires:	%{name} = %{version}-%{release}
 
 %description static
 tolua++ static library.
@@ -90,8 +100,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libtolua++.so
 %{_includedir}/tolua++.h
+
+%files libs
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libtolua++.so
 
 %files static
 %defattr(644,root,root,755)
