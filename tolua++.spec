@@ -8,7 +8,6 @@ Group:		Development/Tools
 Source0:	http://www.codenix.com/~tolua/%{name}-%{version}.tar.bz2
 # Source0-md5:	100aa6907b8108582080b37d79c0afd7
 Patch0:		%{name}-lua51.patch
-Patch1:		%{name}-compile.patch
 URL:		http://www.codenix.com/~tolua/
 BuildRequires:	lua51-devel
 BuildRequires:	scons
@@ -61,10 +60,10 @@ Biblioteka statyczna tolua++.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 
 %build
-%scons
+%scons \
+	CCFLAGS="%{rpmcflags} -I/usr/include/lua51 -ansi -fPIC"
 
 %{__cc} src/lib/tolua_{event,is,map,push,to}.o -shared -llua51 -ldl -lm -o lib/libtolua++.so
 %{__cc} -o bin/tolua++ src/bin/toluabind.o src/bin/tolua.o -Llib -ltolua++
