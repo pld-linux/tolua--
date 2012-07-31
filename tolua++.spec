@@ -2,8 +2,8 @@ Summary:	Extended version of tolua, a tool to integrate C/C++ code with Lua
 Summary(pl.UTF-8):	Rozszerzona wersja tolua, narzędzia integrującego kod C/C++ z Lua
 Name:		tolua++
 Version:	1.0.93
-Release:	4
-License:	Free
+Release:	5
+License:	MIT
 Group:		Development/Tools
 Source0:	http://www.codenix.com/~tolua/%{name}-%{version}.tar.bz2
 # Source0-md5:	100aa6907b8108582080b37d79c0afd7
@@ -11,6 +11,7 @@ Patch0:		%{name}-lua51.patch
 URL:		http://www.codenix.com/~tolua/
 BuildRequires:	lua51-devel
 BuildRequires:	scons
+Requires:	%{name}-libs = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -32,12 +33,23 @@ Lua. Bazując na "oczyszczonych" plikach nagłówkowych tolua
 automatycznie generuje kod umożliwiający Lua dostęp do struktur i
 funkcji C/C++.
 
+%package libs
+Summary:	tolua++ shared library
+Summary(pl.UTF-8):	Biblioteka współdzielona tolua++
+Group:		Libraries
+Conflicts:	tolua++-devel < 1.0.93-5
+
+%description libs
+tolua++ shared library.
+
+%description libs -l pl.UTF-8
+Biblioteka współdzielona tolua++.
+
 %package devel
 Summary:	tolua++ header files
 Summary(pl.UTF-8):	Pliki nagłówkowe tolua++
 Group:		Development/Libraries
-Requires:	%{name} = %{version}-%{release}
-Obsoletes:	tolua++-libs
+Requires:	%{name}-libs = %{version}-%{release}
 
 %description devel
 Header files for tolua++.
@@ -80,19 +92,23 @@ install lib/lib* $RPM_BUILD_ROOT%{_libdir}
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post	-p /sbin/ldconfig
-%postun	-p /sbin/ldconfig
+%post	libs -p /sbin/ldconfig
+%postun	libs -p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
-%doc README doc/*
 %attr(755,root,root) %{_bindir}/tolua++
+
+%files libs
+%defattr(644,root,root,755)
+%doc COPYRIGHT README README-5.1 doc/*
+%attr(755,root,root) %{_libdir}/libtolua++.so
 
 %files devel
 %defattr(644,root,root,755)
 %{_includedir}/tolua++.h
-%attr(755,root,root) %{_libdir}/libtolua++.so
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/libtolua++*.a
+%{_libdir}/libtolua++.a
+%{_libdir}/libtolua++_static.a
